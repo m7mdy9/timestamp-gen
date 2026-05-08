@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     date.addEventListener('input', (event)=>{
         date_input = event.target.value
         const list_for_dates = date_input.split("-")
-        current_date.setFullYear(list_for_dates[0],list_for_dates[1]-1,list_for_dates[2])
+        current_date.setFullYear(list_for_dates[0],1,list_for_dates[2])
         ms_update()
         update()
     })
