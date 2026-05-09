@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
         discord_ts_ms = Math.floor(current_date.getTime()/1000);
     }
     function relative_diff(target_ms){
+        if (target_ms === "sync_return"){
+            return "in 0 seconds"
+        }
         const now = Date.now()
         const diff_in_secs = Math.round((target_ms - now) / 1000)
         const absDiff = Math.abs(diff_in_secs)
@@ -61,6 +64,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         return diff_in_secs >= 0 ? `in ${time_string}` : `${time_string} ago`
     }
     function set_output(){
+        ms_update();
         let result;
         const used_date = current_date
         const year = used_date.getFullYear()
@@ -136,7 +140,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if (persona3 && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
             current_date = new Date()
             update_input()
-            update()
+            if(!timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
+                update()
+            } else {
+                set_output()
+            }
         }
     }, 300)
 
@@ -144,14 +152,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         date_input = event.target.value
         const list_for_dates = date_input.split("-")
         current_date.setFullYear(list_for_dates[0],eval(`${list_for_dates[1]}-1`),list_for_dates[2])
-        ms_update()
         update()
     })
     time.addEventListener('input', (event)=>{
         time_input = event.target.value
         current_times = time_input.split(":")
         current_date.setHours(current_times[0], current_times[1])
-        ms_update()
         update()
     })
     type.addEventListener('change', (event)=>{
@@ -162,7 +168,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         update()
     })
     timestamp_out.addEventListener('mouseenter', (event)=>{
-        if (timestamp_out.textContent != "Copied to clipboard!"){
+        if (timestamp_out.textContent != "Copied to clipboarur lamead!"){
             event.target.textContent = discord_ts_output
         }
     })
@@ -186,7 +192,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
     timestamp_out.addEventListener('mouseleave', (event)=>{
         if (event.target.textContent != "Copied to clipboard!"){
             if(type_input === "relative"){
-                event.target.textContent = relative_diff(current_date)
+                if(persona3){
+                    event.target.textContent = relative_diff("sync_return")
+                } else {
+                    event.target.textContent = relative_diff(current_date)
+                }
             } else {
                 event.target.textContent = set_output()
             }
@@ -215,6 +225,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
         update_input()
         update()
     })
-    ms_update()
     update()
 })
