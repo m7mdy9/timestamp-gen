@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const type = document.querySelector("#drop_list")
     const timestamp_out = document.querySelector("#output_date")
     const reset_button = document.querySelector("#reset")
+    const sync_button = document.querySelector("#sync")
     // const timestamp_raw = document.querySelector("#timestamp_raw")
     let current_date = new Date()
-    let discord_ts_ms,date_input,time_input,type_input,type_style,discord_ts_output,output_date,relative_status, interval_id;
+    let discord_ts_ms,date_input,time_input,type_input,type_style,discord_ts_output,output_date,relative_status, interval_id, persona3;
     
     function getDate(){
         let year = current_date.getFullYear()
@@ -112,11 +113,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
     function update(){
         output_date = set_output();
         if(relative_status === true){
-            // return timestamp_raw.textContent = discord_ts_output;
+            timestamp_out.textContent = relative_diff(current_date)
             return;
         }
         timestamp_out.textContent = output_date;
         // timestamp_raw.textContent = discord_ts_output;
+    }
+    function update_input(){
+        date.value = getDate()
+        time.value = getTime()
     }
     if(!type_input){
         type_input = type.value;
@@ -125,10 +130,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
     timestamp_out.textContent = relative_diff(current_date)
     setInterval((input)=>{
-        if (type_input === "relative" && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
+        if (type_input === "relative" && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!" && !persona3){
             timestamp_out.textContent = relative_diff(current_date)
         }
-    }, 1000)
+        if (persona3 && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
+            current_date = new Date()
+            update_input()
+            update()
+        }
+    }, 300)
 
     date.addEventListener('input', (event)=>{
         date_input = event.target.value
@@ -182,9 +192,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
             }
         }
     })
+    sync_button.addEventListener('click', (event)=>{
+        /*
+        #sync:active{
+    transform: translateY(5px);
+    box-shadow: none;
+}
+        */
+        if (persona3){
+            persona3 = false;
+            sync_button.style.transform = ""
+            sync_button.style.boxShadow = ""
+        } else {
+            persona3 = true;
+            sync_button.style.boxShadow = "0 0.1rem 1rem 0 rgba(255, 255, 255, 0.6)"
+            sync_button.style.transform = "translateY(5px)"
 
+        }
+    })
     reset_button.addEventListener('click', (event)=>{
         current_date = new Date();
+        update_input()
         update()
     })
     ms_update()

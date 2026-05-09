@@ -71,7 +71,7 @@ label {
 .bottom_box{
     text-align: center;
 }
-#reset {
+.cool_button {
     border-color: rgb(141, 141, 141);
     border-radius: 1rem;
     font-size: clamp(0.5rem, 0.318rem + 0.91vw, 1rem);
@@ -83,10 +83,25 @@ label {
     transition: box-shadow 0.2s ease-in-out;
     transition: transform 0.2s ease-in-out;
 }
-#reset:hover{
-    box-shadow:0 0.1rem 1rem 0 rgba(255, 255, 255, 0.6)
+
+.cool_button:hover{
+    box-shadow:0 0.1rem clamp(0.5rem, 0.518rem + 0.91vw, 1rem) 0 rgba(255, 255, 255, 0.6)
 }
 #reset:active{
     transform: translateY(5px); /* Creates a "pressed" look */
     box-shadow: none;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 30vw;
+}
+@media(max-width: 850px){
+    .buttons{
+        flex-direction: column;
+        /* justify-content: space-around; */
+        min-width: none;
+        min-height: 80px;
+    }
 }
