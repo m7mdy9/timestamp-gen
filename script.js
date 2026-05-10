@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         update()
     })
     timestamp_out.addEventListener('mouseenter', (event)=>{
-        if (timestamp_out.textContent != "Copied to clipboarur lamead!"){
+        if (timestamp_out.textContent != "Copied to clipboad!"){
             event.target.textContent = discord_ts_output
         }
     })
