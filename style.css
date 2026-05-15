@@ -86,9 +86,6 @@ label {
     transition: transform 0.2s ease-in-out;
 }
 
-.cool_button:hover{
-    box-shadow:0 0.1rem clamp(0.5rem, 0.518rem + 0.91vw, 1rem) 0 rgba(255, 255, 255, 0.6)
-}
 #reset:active{
     transform: translateY(5px); /* Creates a "pressed" look */
     box-shadow: none;
@@ -120,4 +117,9 @@ main{
         min-width: none;
         min-height: 80px;
     }
+}
+@media(hover:hover){
+    .cool_button:hover {
+            box-shadow: 0 0.1rem clamp(0.5rem, 0.518rem + 0.91vw, 1rem) 0 rgba(255, 255, 255, 0.6)
+        }
 }

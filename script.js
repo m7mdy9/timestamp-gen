@@ -127,6 +127,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         date.value = getDate()
         time.value = getTime()
     }
+    function matchesHover(element){
+        if(!window.matchMedia("(hover:hover)").matches){
+            return false
+        } else {
+            return element.matches(":hover")
+        }
+    }
     if(!type_input){
         type_input = type.value;
         date.value = getDate()
@@ -134,10 +141,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
     timestamp_out.textContent = relative_diff(current_date)
     setInterval((input)=>{
-        if (type_input === "relative" && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!" && !persona3){
+        if (type_input === "relative" && !matchesHover(timestamp_out) && timestamp_out.textContent != "Copied to clipboard!" && !persona3){
             timestamp_out.textContent = relative_diff(current_date)
         }
-        if (persona3 && !timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
+        if (persona3 && !matchesHover(timestamp_out) && timestamp_out.textContent != "Copied to clipboard!"){
             current_date = new Date()
             update_input()
             if(!timestamp_out.matches(":hover") && timestamp_out.textContent != "Copied to clipboard!"){
