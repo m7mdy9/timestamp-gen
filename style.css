@@ -63,7 +63,9 @@ label {
     margin-bottom: 1.5vh;
 }
 #output_date{
-    /* margin-top: 1vh; */
+    all: unset;
+    color: white;
+    margin-top: 1vh;
     cursor: pointer;
     margin-bottom: 2vh;
     font-size: clamp(1rem, 0.455rem + 2.73vw, 2.5rem);
@@ -96,6 +98,20 @@ label {
     flex-direction: row;
     justify-content: space-around;
     min-width: 30vw;
+}
+
+#bottom_container{
+    margin: 1vh auto;
+    width: 100%;
+    text-align: right;
+    font-size: clamp(0.58rem, 0.445rem + 0.67vw, 0.95rem);
+    color: rgb(196, 196, 196);
+    word-wrap: normal;
+    line-height: 1.35;
+}
+main{
+    width: fit-content;
+    margin: 0 auto;
 }
 @media(max-width: 850px){
     .buttons{

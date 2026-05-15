@@ -11,41 +11,46 @@
     <header>
         <h1 id="header_text">Discord Timestamp Generator</h1>
     </header>
-    <div class="main">
-        <div class="main_grid">
-            <div class="grid_el">
-                <label for="date" class="input_item">Date:</label>
-                <input id="date" type="date">
+    <main>
+        <div class="main">
+            <div class="main_grid">
+                <div class="grid_el">
+                    <label for="date" class="input_item">Date:</label>
+                    <input id="date" type="date">
+                </div>
+                <div class="grid_el">
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" class="input_item">
+                </div>
+                <div class="grid_el">
+                    <label for="drop_list">Output Type:</label>
+                    <select name="drop_list" id="drop_list" class="input_item">
+                        <option value="relative">Relative Time</option>
+                        <option value="short_time">Short Time</option>
+                        <option value="short_date">Short Date</option>
+                        <option value="long_date">Long Date</option>
+                        <option value="long_date_short_time">Long Date, Short Time</option>
+                        <option value="full_date">Full date, with Weekday and Time</option>
+                        <option value="short_date_short_time">Short time, Short Time</option>
+                    </select>
+                </div>
             </div>
-            <div class="grid_el">
-                <label for="time">Time:</label>
-                <input type="time" id="time" class="input_item">
-            </div>
-            <div class="grid_el">
-                <label for="drop_list">Output Type:</label>
-                <select name="drop_list" id="drop_list" class="input_item">
-                    <option value="relative">Relative Time</option>
-                    <option value="short_time">Short Time</option>
-                    <option value="short_date">Short Date</option>
-                    <option value="long_date">Long Date</option>
-                    <option value="long_date_short_time">Long Date, Short Time</option>
-                    <option value="full_date">Full date, with Weekday and Time</option>
-                    <option value="short_date_short_time">Short time, Short Time</option>
-                </select>
+            <div class="bottom_box">
+                <div class="output">
+                    <p id="output_text">Output:</p>
+                    <button id="output_date"></button>
+                </div>
+                <!-- <textarea readonly onmouseover="this.select()" id="timestamp_raw">timestamp</textarea>
+                <button id="copy_button">Copy to clipboard</button> -->
+                <div class="buttons">
+                    <button id="reset" class="cool_button">Reset Time to Current Time</button>
+                    <button id="sync" class="cool_button">Sync Time</button>
+                </div>
             </div>
         </div>
-        <div class="bottom_box">
-            <div class="output">
-                <p id="output_text">Output:</p>
-                <p id="output_date"></p>
-            </div>
-            <!-- <textarea readonly onmouseover="this.select()" id="timestamp_raw">timestamp</textarea>
-            <button id="copy_button">Copy to clipboard</button> -->
-            <div class="buttons">
-                <button id="reset" class="cool_button">Reset Time to Current Time</button>
-                <button id="sync" class="cool_button">Sync Time</button>
-            </div>
+        <div id="bottom_container">
+            <p id="bottom_text">made by m7mdy9<br>if you have any suggestions contact me on discord</p>
         </div>
-    </div>
+    </main>
 </body>
 </html>
